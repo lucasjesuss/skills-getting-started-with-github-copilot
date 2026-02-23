@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 import os
 from pathlib import Path
+import copy
 
 app = FastAPI(title="Mergington High School API",
               description="API for viewing and signing up for extracurricular activities")
@@ -20,7 +21,8 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
 # In-memory activity database
-activities = {
+# keep an unmodified copy for tests
+INITIAL_ACTIVITIES = {
     "Chess Club": {
         "description": "Learn strategies and compete in chess tournaments",
         "schedule": "Fridays, 3:30 PM - 5:00 PM",
@@ -76,6 +78,15 @@ activities = {
         "participants": ["ethan@mergington.edu", "mia@mergington.edu"]
     }
 }
+
+# mutable state used by endpoints
+activities = copy.deepcopy(INITIAL_ACTIVITIES)
+
+
+def reset_activities():
+    """Restore the activity store back to its original default values."""
+    global activities
+    activities = copy.deepcopy(INITIAL_ACTIVITIES)
 
 
 @app.get("/")
