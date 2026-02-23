@@ -108,10 +108,51 @@ button:hover {
   background-color: #3949ab;
 }
 
-.message {
-  margin-top: 20px;
-  padding: 10px;
+.activity-card .participants {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.activity-card .participants-list {
+  margin-top: 6px;
+  padding-left: 20px;
+  list-style: none; /* hide default bullets */
+}
+
+.activity-card .participants-list li {
+  margin-bottom: 4px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-card .remove-participant {
+  cursor: pointer;
+  color: #c62828;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.activity-card .remove-participant:hover {
+  color: #8e0000;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 18px;
   border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 0.95rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.snackbar.show {
+  opacity: 1;
 }
 
 .success {
@@ -130,10 +171,6 @@ button:hover {
   background-color: #d1ecf1;
   color: #0c5460;
   border: 1px solid #bee5eb;
-}
-
-.hidden {
-  display: none;
 }
 
 footer {
